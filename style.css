@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+:root {
+  --background: #010204;
+  --primary: #dec596;
+  --secondary: #1c1f0a;
+  --accent: #ba4e3b;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 5.3vmax 5.3vmax;
+  background-position: top center, bottom left;
+  background-color: #2c80ed;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: white;
+}
+body::-webkit-scrollbar-button {
+  border-radius: 20px;
+  border: 3px white solid;
+  background-color: #3e80eb;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #4b9af2;
+  border-radius: 20px;
+  border: 3px white solid;
+}
+.container h1 {
+  text-align: center;
+  font-size: 50px;
+  padding: 20px 40px;
+  color: #4b9af2;
+  background-color: white;
+  font-family: "Bebas Neue", sans-serif;
+  animation: colorChange infinite ease 15s alternate;
+  user-select: none;
+}
+.container h1 span {
+  color: #3e80eb;
+}
+.card {
+  position: relative;
+  z-index: 0;
+  min-width: 300px;
+  aspect-ratio: 16/10;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  animation: bounce 2s ease-in-out infinite alternate;
+  box-shadow: 3.7px 2.8px 2.2px rgba(0, 0, 0, 0.013),
+    8.8px 6.7px 5.3px rgba(0, 0, 0, 0.023),
+    16.7px 12.5px 10px rgba(0, 0, 0, 0.032),
+    29.7px 22.3px 17.9px rgba(0, 0, 0, 0.041),
+    55.6px 41.8px 33.4px rgba(0, 0, 0, 0.054),
+    133px 100px 80px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transition: scale 200ms ease, opacity 300ms ease-in var(--delay);
+}
+.card.show {
+  opacity: 1;
+}
+.card:hover,
+.card:focus {
+  scale: 1.1;
+  outline: 0;
+}
+
+.card:hover > img,
+.card:focus > img {
+  animation-play-state: running;
+}
+
+.card img {
+  height: 80px;
+  animation: scaleUpDown 600ms ease-in-out alternate paused infinite 200ms;
+}
+
+.card.playStore {
+  --cardColor: #1c1c1c;
+  --delay: 400ms;
+}
+.card.walmart {
+  --cardColor: #014fb3;
+  --delay: 200ms;
+}
+.card.amazon {
+  --cardColor: #232f3d;
+  --delay: 0ms;
+}
+.card.cashApp {
+  --cardColor: #01d54b;
+  --delay: 500ms;
+}
+.card.gaz {
+  --cardColor: #fbc316;
+  --delay: 600ms;
+}
+
+.cardWrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(90deg, #206be7, #4b9af2, #206be7);
+}
+
+.card::before {
+  content: "USA Only Gift Card";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 15px 0 15px 0;
+  font-family: "Bebas Neue", sans-serif;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--cardColor);
+  text-shadow: 0 0 20px -5px var(--cardColor);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background-color: var(--cardColor);
+  background-image: linear-gradient(145deg, transparent, #cacaca69),
+    radial-gradient(var(--cardColor) 20%, transparent 21%);
+  background-position: top, 5vmax 5vmax;
+  border-radius: 15px;
+  z-index: -1;
+}
+/* .onlyUSA::after {
+  content: attr(data-offer);
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  padding: 20px;
+  aspect-ratio: 1/1;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 6.9px 5.4px 10px rgba(0, 0, 0, 0.067),
+    55px 43px 80px rgba(0, 0, 0, 0.14);
+  font-family: "Bebas Neue", sans-serif;
+  text-decoration: none;
+  font-size: 40px;
+  color: var(--cardColor);
+  text-shadow: 0 0 20px -5px var(--cardColor);
+} */
+
+@keyframes scaleUpDown {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 0.9;
+  }
+}
+.wheel {
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+}
+.wheel i {
+  position: absolute;
+  mix-blend-mode: soft-light;
+  transition: rotate 400ms linear;
+  color: white;
+}
+.wheel i:nth-child(1) {
+  font-size: 500px;
+  top: -10%;
+  left: -30%;
+  opacity: 0.2;
+  rotate: calc(var(--rotate) * 1deg);
+}
+.wheel i:nth-child(2) {
+  font-size: 450px;
+  right: -35%;
+  top: 30%;
+  opacity: 0.25;
+  rotate: calc(var(--rotate) * -0.5deg);
+}
+.wheel i:nth-child(3) {
+  font-size: 600px;
+  left: -60%;
+  top: 70%;
+  opacity: 0.18;
+  rotate: calc(var(--rotate) * 1.5deg);
+}
+
+@media (min-width: 1000px) {
+  .container h1 {
+    font-size: 100px;
+  }
+  .card {
+    width: 480px;
+  }
+  .card > img {
+    height: 120px;
+  }
+  .card::before {
+    font-size: 20px;
+  }
+  .wheel i:nth-child(1) {
+    font-size: 30vw;
+    top: 0%;
+    left: 20%;
+  }
+  .wheel i:nth-child(2) {
+    font-size: 40vw;
+    right: 15%;
+    top: 25%;
+  }
+  .wheel i:nth-child(3) {
+    font-size: 50vw;
+    left: 10%;
+    top: 60%;
+  }
+}
